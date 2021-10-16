@@ -1,5 +1,5 @@
 module.exports = {
-    port: checkout(process.env.port, 443),
+    port: checkout(process.env.PORT, 80),
     staticDir: "storage",
     enableSocketServer: true,
     socketMiddlewares : [

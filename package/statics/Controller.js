@@ -1,0 +1,65 @@
+const Base = require('../base')
+const pluralize = require('pluralize')
+const socketAdapter = require("../framework/chasi/adapters/SocketAdapters")
+module.exports =  class Controller extends Base {
+    static $app = {}
+    static $models = {}
+    static $services = {}
+    static $packages = {}
+    static $bindMap = {
+        'notification-entry': 'entry',
+        'notification-dispatcher': 'dispatcher',
+    }
+
+    get $config () {
+        return Controller.$config;
+    }
+    
+    get models () {
+        return Controller.$models
+    }
+
+    get packages () {
+        return Controller.$packages
+    }
+
+    get $io () {
+        return Controller.$io;
+    }
+
+    get services () {
+        return Controller.$services
+    }
+
+    model(model) {
+        return Controller.$models[model]
+    }
+
+
+    static init(property, packages) {
+        Controller.$io = socketAdapter.$io
+        Controller.$config = property
+        Controller.$packages = packages.installedPackages;
+        Controller.assignModels(Controller.$config.app.modelsDir);
+    }
+
+    static installServices($services) {
+        Controller.$services = $services;
+    }
+
+    static assignModels(directory) {
+        try {
+            directory.forEach( dir => {
+                var buff = Controller.staticStackDir(`${dir}`);
+                buff.map(filedir => {
+                    if(filedir instanceof Error) throw new Error(filedir.message);
+                    let key = Reflect.construct(filedir, []).constructor.modelName
+                    if(Controller.$bindMap[key]) key = Controller.$bindMap[key]
+                    Controller.$models[key] = filedir
+                })
+            })
+        } catch(e) {
+            console.log(e)
+        }
+    }
+}

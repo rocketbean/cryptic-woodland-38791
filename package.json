@@ -3,9 +3,8 @@
 	"version": "0.1.0",
 	"author": "Nikko Mesina",
 	"scripts": {
-		"start": "nohup node server.js && disown",
-		"dev": "nodemon index.js",
-		"heroku-postbuild": " npm run start"
+		"start": "node server.js",
+		"dev": "nodemon index.js"
 	},
 	"devDependencies": {
 		"babel-preset-env": "^1.7.0",

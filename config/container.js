@@ -1,6 +1,6 @@
 module.exports = {
     name: checkout(process.env.APPNAME, 'Chasi'),
-    environment: checkout(process.env.environment, 'dev'),
+    environment: checkout(process.env.environment, 'local'),
     mode: {
         dev: {
             key: checkout(process.env.SSLcontainerKey, 'null'),

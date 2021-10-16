@@ -5,7 +5,7 @@ module.exports = function() {
   route.get("credits", "UserController@credits")
   route.get('items', "ItemController@list");
   route.group({prefix: 'item'}, (function () {
-    route.post('', "ItemController@create");
+    route.post('', "ItemController@create").middleware('must-be-admin');
     route.get('', "ItemController@index");
   }));
   route.group({prefix: 'cart'}, (function () {

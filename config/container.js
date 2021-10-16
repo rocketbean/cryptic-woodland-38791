@@ -67,6 +67,7 @@ module.exports = {
          * be installed to that Chasi Route MWs Repository,
          * then you can use it in your routes
          */
+        'must-be-admin': require('../container/middlewares/MustBeAdmin.mw.js'),
 
     }
 

@@ -10,8 +10,8 @@ class ItemController extends Controller {
    * */
   async create(request) {
     try {
-      let item = await this.models.item.create(request.body);
-      return item;
+      // let item = await this.models.item.create(request.body);
+      // return item;
     } catch(e) {
       throw {status: 400, message: e.message}
     }

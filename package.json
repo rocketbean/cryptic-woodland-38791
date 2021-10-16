@@ -3,9 +3,9 @@
 	"version": "0.1.0",
 	"author": "Nikko Mesina",
 	"scripts": {
-		"start": "node server.js",
+		"start": "nohup node server.js && disown",
 		"dev": "nodemon index.js",
-		"heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run start"
+		"heroku-postbuild": " npm run start"
 	},
 	"devDependencies": {
 		"babel-preset-env": "^1.7.0",

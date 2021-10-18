@@ -1,6 +1,15 @@
 module.exports = {
   host: checkout(process.env.dbhost, 'dev'),
-  bootWithDB: false, // if set to "true", will return an error runtime wasn't able to connect to database
+
+  /**
+   * if [bootWithDB] property is enabled,
+   * it will return an error, 
+   * if the runtime is not able to connect
+   * on the specified DB.
+   * [error will break the chasi instance startup]
+   */
+
+  bootWithDB: false,  
   options: {
     dev: {
       url: checkout(process.env.dbConStringDev, 'mongodb://localhost:27017/'),
